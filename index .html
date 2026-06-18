@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritesh Kumar — Senior Software Engineer & ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0E1A;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --accent: #6EE7B7;
+    --accent2: #3B82F6;
+    --accent3: #A78BFA;
+    --text: #E2E8F0;
+    --muted: #64748B;
+    --border: rgba(110,231,183,0.12);
+    --glow: 0 0 40px rgba(110,231,183,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,14,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem; font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(110,231,183,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(110,231,183,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%; filter: blur(100px); z-index: 0;
+    animation: drift 8s ease-in-out infinite alternate;
+  }
+  .blob1 { width: 500px; height: 500px; background: rgba(110,231,183,0.07); top: -100px; right: -100px; }
+  .blob2 { width: 400px; height: 400px; background: rgba(59,130,246,0.06); bottom: -50px; left: 20%; animation-delay: -4s; }
+  @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(30px,20px) scale(1.05); } }
+
+  .hero-content { position: relative; z-index: 1; max-width: 780px; }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; font-weight: 400;
+    color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--accent);
+  }
+  h1.hero-name {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+  }
+  h1.hero-name span { color: var(--accent); }
+  .hero-title {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--muted); font-weight: 400;
+    margin-bottom: 1.75rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hero-bio {
+    font-size: 1.05rem; color: #94A3B8;
+    max-width: 560px; line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 6px; font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; cursor: pointer; transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary {
+    background: var(--accent); color: #0A0E1A;
+    border: 2px solid var(--accent);
+  }
+  .btn-primary:hover { background: transparent; color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(110,231,183,0.25); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    border: 2px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    margin-top: 4rem; padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-number {
+    font-size: 2rem; font-weight: 700;
+    color: var(--accent); line-height: 1;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 6rem 4rem; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+  }
+  h2.section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  h2.section-title em { color: var(--accent); font-style: normal; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+  .skill-card {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem 1.75rem;
+    transition: all 0.25s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .skill-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .skill-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); border-color: rgba(110,231,183,0.25); }
+  .skill-card:hover::before { opacity: 1; }
+  .skill-icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+  .skill-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .skill-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+  .skill-level {
+    display: flex; gap: 4px; margin-top: 0.9rem;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .dot.empty { background: var(--surface); border: 1px solid var(--muted); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item {
+    padding-left: 2.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: ''; position: absolute;
+    left: -5px; top: 8px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(110,231,183,0.5);
+  }
+  .timeline-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--accent);
+    letter-spacing: 0.08em; margin-bottom: 0.4rem;
+  }
+  .timeline-role {
+    font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem;
+  }
+  .timeline-company {
+    font-size: 0.9rem; color: var(--accent2); font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-desc { font-size: 0.88rem; color: var(--muted); max-width: 560px; line-height: 1.65; }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--surface); }
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.75rem;
+    transition: all 0.25s;
+  }
+  .edu-card:hover { border-color: rgba(110,231,183,0.3); transform: translateY(-2px); }
+  .edu-degree-badge {
+    display: inline-block;
+    background: rgba(110,231,183,0.1);
+    color: var(--accent); border-radius: 4px;
+    font-size: 0.7rem; font-weight: 600;
+    padding: 0.2rem 0.6rem; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 0.9rem;
+  }
+  .edu-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; line-height: 1.35; }
+  .edu-inst { font-size: 0.85rem; color: var(--accent2); font-weight: 500; margin-bottom: 0.4rem; }
+  .edu-years { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+
+  /* ── CERTIFICATIONS ── */
+  #certs { background: var(--bg); }
+  .cert-list { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .cert-chip {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.65rem 1.2rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 100px; font-size: 0.85rem; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .cert-chip:hover { border-color: var(--accent3); color: var(--accent3); transform: translateY(-1px); }
+  .cert-chip::before { content: '✦'; font-size: 0.6rem; color: var(--accent3); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--surface); text-align: center; }
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact-headline {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 1rem; line-height: 1.15;
+  }
+  .contact-sub { color: var(--muted); margin-bottom: 2.5rem; font-size: 1rem; }
+  .contact-links {
+    display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    color: var(--text); text-decoration: none;
+    font-size: 0.9rem; padding: 0.7rem 1.4rem;
+    border: 1px solid var(--border); border-radius: 8px;
+    transition: all 0.2s; font-family: 'JetBrains Mono', monospace;
+  }
+  .contact-item:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 2rem 4rem;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .stats-bar { gap: 1.5rem; }
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">rk.dev</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for opportunities</div>
+    <h1 class="hero-name">Ritesh<br><span>Kumar</span></h1>
+    <div class="hero-title">Python · Machine Learning · Senior Software Engineer</div>
+    <p class="hero-bio">
+      Senior Software Engineer with 7+ years of experience building intelligent systems with Python, 
+      Pandas, and ML. Currently pursuing a PhD in Computer Science while driving impactful 
+      software solutions at scale.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Get In Touch</a>
+      <a href="https://www.linkedin.com/in/theritesh" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-number">7+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Companies</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">MTech</span>
+        <span class="stat-label">Computer Science</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">PhD</span>
+        <span class="stat-label">In Progress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-tag">// what I work with</div>
+    <h2 class="section-title">Technical <em>Skills</em></h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-desc">Core language for automation, data processing, and backend development</div>
+      <div class="skill-level"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🧠</div>
+      <div class="skill-name">Machine Learning</div>
+      <div class="skill-desc">Model training, evaluation, and deployment for real-world ML pipelines</div>
+      <div class="skill-level"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot empty"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Pandas</div>
+      <div class="skill-desc">Advanced data wrangling, analysis, and transformation at scale</div>
+      <div class="skill-level"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">REST APIs</div>
+      <div class="skill-desc">Designing and integrating RESTful services and microservices architectures</div>
+      <div class="skill-level"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot empty"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-name">.NET / C#</div>
+      <div class="skill-desc">Enterprise software development using the Microsoft .NET framework</div>
+      <div class="skill-level"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot empty"></div><div class="dot empty"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔬</div>
+      <div class="skill-name">Research & PhD</div>
+      <div class="skill-desc">Active researcher in Computer Science at Sanskaram University</div>
+      <div class="skill-level"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot empty"></div><div class="dot empty"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <div class="section-tag">// where I've worked</div>
+    <h2 class="section-title">Work <em>Experience</em></h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-period">Jan 2022 – Nov 2025 · 3 yrs 11 mos</div>
+      <div class="timeline-role">Senior Software Engineer</div>
+      <div class="timeline-company">3i Infotech Ltd. · Noida</div>
+      <div class="timeline-desc">Applied Python, Pandas, and Machine Learning expertise to deliver scalable software solutions. Led technical initiatives across the full development lifecycle.</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-period">Nov 2021 – Dec 2021 · 2 mos</div>
+      <div class="timeline-role">Technical Team Lead</div>
+      <div class="timeline-company">Campus Labs Pvt. Ltd. · Noida</div>
+      <div class="timeline-desc">Led engineering team through critical project phases, coordinating technical delivery and mentoring junior developers.</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-period">Jun 2019 – Oct 2021 · 2 yrs 5 mos</div>
+      <div class="timeline-role">Software Engineer</div>
+      <div class="timeline-company">Campus Labs Pvt. Ltd. · Noida</div>
+      <div class="timeline-desc">Contributed to core product development, building robust backend features and solving complex technical challenges in a fast-paced environment.</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-period">May 2018 – Jul 2018 · 3 mos</div>
+      <div class="timeline-role">Software Developer</div>
+      <div class="timeline-company">EDP Soft · Kolkata</div>
+      <div class="timeline-desc">Developed features within the Bravo software product using .NET framework technologies.</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-period">Feb 2018 – Apr 2018 · 3 mos</div>
+      <div class="timeline-role">Web Developer</div>
+      <div class="timeline-company">M4 Pvt. Ltd. · New Delhi</div>
+      <div class="timeline-desc">Worked on man-machine and material optimization project, building web interfaces for industrial process management.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <div class="section-tag">// academic background</div>
+    <h2 class="section-title">Education <em>& Degrees</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree-badge">PhD</div>
+      <div class="edu-title">Computer Science</div>
+      <div class="edu-inst">Sanskaram University</div>
+      <div class="edu-years">Jan 2025 – Dec 2028 · In Progress</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree-badge">MTech</div>
+      <div class="edu-title">Computer Science</div>
+      <div class="edu-inst">Lingaya's University, Faridabad</div>
+      <div class="edu-years">Jul 2022 – Jul 2024</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree-badge">MBA</div>
+      <div class="edu-title">Executive MBA · Project Management</div>
+      <div class="edu-inst">Jaipur National University</div>
+      <div class="edu-years">Oct 2020 – Jan 2022</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree-badge">BTech</div>
+      <div class="edu-title">Bachelor of Technology</div>
+      <div class="edu-inst">IIIT Kalyani</div>
+      <div class="edu-years">Aug 2015 – Jun 2019</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-header reveal">
+    <div class="section-tag">// credentials</div>
+    <h2 class="section-title">Certifications</h2>
+  </div>
+  <div class="cert-list reveal">
+    <div class="cert-chip">Python 3 Tutorial Course</div>
+    <div class="cert-chip">3hr Workshop — Python</div>
+    <div class="cert-chip">PHP Tutorial Course</div>
+    <div class="cert-chip">REST API (Intermediate)</div>
+    <div class="cert-chip">C# Programming</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="section-tag" style="text-align:center;">// let's connect</p>
+      <h2 class="contact-headline">Open to new <em style="color:var(--accent);font-style:normal;">opportunities</em></h2>
+      <p class="contact-sub">Whether it's a full-time role, research collaboration, or just a conversation — reach out.</p>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:riteshand1996@gmail.com" class="contact-item">✉ riteshand1996@gmail.com</a>
+      <a href="tel:+916290594155" class="contact-item">📱 +91 6290594155</a>
+      <a href="https://www.linkedin.com/in/theritesh" target="_blank" class="contact-item">in LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built with intention · Ritesh Kumar © 2025 · Noida, Uttar Pradesh
+</footer>
+
+<script>
+  // Scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
